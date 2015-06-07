@@ -1,3 +1,4 @@
+#! /Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4
 __author__ = 'lehong'
 import sys
 import time
@@ -55,22 +56,30 @@ print(content)
 print('ok')
 """
 
-# Here %23 == '#'
-encodedQuery = '%24BABA'
+# Here %23 == '#' %24 == '$' http://meyerweb.com/eric/tools/dencoder/ helps encode or decode rul.
+# encodedQuery = '%24CVEO'
+encodedQuery = '%24'+opts.sname
 
 request, response = Request(
     'https://api.twitter.com/1.1/search/tweets.json?q=' + encodedQuery,
     'Gdwmom36VPbk9p7XODaHf1qs7',
     '4cZ8I713Du6LIsPHnt9LCelfU8rAnFURyII1XOXlgzXw1cdOTr')
-print(request)
-print(response)
+# print(request)
+# print(response)
 
 # decode with utf8 is needed for Python 3
 data = json.loads(response.decode('utf8'))
-print('ok')
+
 tweets = data['statuses']
-for d in tweets:
-    print(d.keys())
+for d in reversed(tweets):
+    # print(d.keys())
     for k in d.keys():
-        print(k, '--->' , d[k])
-    print('\n\n')
+        if (k == 'text'):
+            print(k, '--->' , d[k].replace('\n', ' '))
+        if (k == 'created_at'):
+            print(k, '--->' , d[k].replace('\n', ' '))
+    print('\n')
+
+print(encodedQuery)
+
+# Will attempt to use https://docs.python.org/2/library/sqlite3.html for database storage.
