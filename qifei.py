@@ -7,6 +7,7 @@ import optparse
 import oauth2 as oauth
 import urllib
 import json
+import sqlite3
 
 """
 This function is designed to analyze general public feeling toward certain stock.
@@ -82,4 +83,11 @@ for d in reversed(tweets):
 
 print(encodedQuery)
 
-# Will attempt to use https://docs.python.org/2/library/sqlite3.html for database storage.
+# Project 1 will attempt to use yahoo-finance to retrieve stock data. These data will be stored alone with twitter data.
+# Testing code will be written in yahooFinTest.py
+
+# Project 2 Will attempt to use https://docs.python.org/2/library/sqlite3.html for database storage.
+# Test sqlite3
+conn = sqlite3.connect('example.db')
+
+# Will
