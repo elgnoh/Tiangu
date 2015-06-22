@@ -79,9 +79,12 @@ for d in reversed(tweets):
             print(k, '--->' , d[k].replace('\n', ' '))
         if (k == 'created_at'):
             print(k, '--->' , d[k].replace('\n', ' '))
+        if (k == 'user'):
+            print(k, '--->' , d[k])
     print('\n')
 
 print(encodedQuery)
+print(tweets[0].keys())
 
 # Project 1 will attempt to use yahoo-finance to retrieve stock data. These data will be stored alone with twitter data.
 # Testing code will be written in yahooFinTest.py
