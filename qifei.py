@@ -85,6 +85,7 @@ for d in reversed(tweets):
 
 print(encodedQuery)
 print(tweets[0].keys())
+# Test changes.
 
 # Project 1 will attempt to use yahoo-finance to retrieve stock data. These data will be stored alone with twitter data.
 # Testing code will be written in yahooFinTest.py
