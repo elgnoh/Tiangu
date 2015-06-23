@@ -74,13 +74,16 @@ data = json.loads(response.decode('utf8'))
 tweets = data['statuses']
 for d in reversed(tweets):
     # print(d.keys())
-    for k in d.keys():
-        if (k == 'text'):
-            print(k, '--->' , d[k].replace('\n', ' '))
-        if (k == 'created_at'):
-            print(k, '--->' , d[k].replace('\n', ' '))
-        if (k == 'user'):
-            print(k, '--->' , d[k])
+    print('text --->',d['text'])
+    print('created_at --->',d['created_at'])
+    print('user/screen_name --->', d['user']['screen_name'])
+    print('user/friends_count',    d['user']['friends_count'])
+    print('user/followers_count',  d['user']['followers_count'])
+    print('user/id_str',           d['user']['id_str'])
+    print('user/favourites_count', d['user']['favourites_count'])
+    # for k in d.keys():
+    #     if (k == 'text'):
+    #         print(k, '--->' , d[k].replace('\n', ' '))
     print('\n')
 
 print(encodedQuery)
