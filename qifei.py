@@ -8,6 +8,7 @@ import oauth2 as oauth
 import urllib
 import json
 import sqlite3
+import pprint
 
 """
 This function is designed to analyze general public feeling toward certain stock.
@@ -72,6 +73,7 @@ request, response = Request(
 data = json.loads(response.decode('utf8'))
 
 tweets = data['statuses']
+tweets2sq = []
 for d in reversed(tweets):
     # print(d.keys())
     print('text --->',d['text'])
@@ -84,10 +86,12 @@ for d in reversed(tweets):
     # for k in d.keys():
     #     if (k == 'text'):
     #         print(k, '--->' , d[k].replace('\n', ' '))
+    tweets2sq.append((opts.sname, d['created_at'], d['user']['screen_name'], int(d['user']['friends_count']), int(d['user']['followers_count']), int(d['user']['id_str']), int(d['user']['favourites_count']), d['text'].replace('\n', ' ')))
     print('\n')
 
 print(encodedQuery)
 print(tweets[0].keys())
+pprint.pprint(tweets2sq)
 # Test changes.
 
 # Project 1 will attempt to use yahoo-finance to retrieve stock data. These data will be stored alone with twitter data.
@@ -96,5 +100,13 @@ print(tweets[0].keys())
 # Project 2 Will attempt to use https://docs.python.org/2/library/sqlite3.html for database storage.
 # Test sqlite3
 conn = sqlite3.connect('example.db')
+c = conn.cursor()
+# Create Table tw is not exist
+# This table is designed to store twitter info on stock symbols.
+# The table is also designed to be cumulative, so future data fishing is possible.
+# Table format
+c.execute('''CREATE TABLE IF NOT EXISTS tw (symbol text, created_at text, screen_name text, friends_count integer, followers_count integer, id_str integer, favourites_count integer, text text)''' )
+c.executemany('INSERT INTO tw VALUES (?,?,?,?,?,?,?,?)', tweets2sq)
+conn.commit()
+conn.close()
 
-# Will
