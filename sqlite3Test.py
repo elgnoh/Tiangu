@@ -30,8 +30,11 @@ while True:
 
 con.close()
 
+# Example: sqlite operations in shell
 # The following lines can be tried.
 # CREATE TABLE stocks2 (date text, trans text, symbol text, qty real, price real, UNIQUE(date));
 # INSERT INTO stocks2 VALUES ('2006-01-05','BUY','RHAT',100,35.14);
 # SELECT * FROM stocks2;
-#
+# .schema tbName # prints table title
+# SELECT * FROM stock2 where symbl = 'CVEO'
+# SELECT created_at,screen_name,followers_count,text from tw where symbol = 'CVEO' AND followers_count > 500;
