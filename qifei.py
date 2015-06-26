@@ -62,7 +62,8 @@ print('ok')
 # Here %23 == '#' %24 == '$' http://meyerweb.com/eric/tools/dencoder/ helps encode or decode rul.
 # encodedQuery = '%24CVEO'
 encodedQuery = '%24'+opts.sname[1]
-symbList = ['AMBA', 'CVEO', 'PANW', 'CYBR', 'FEYE', 'FIT', 'JD']
+symbList = ['AMBA', 'CVEO', 'PANW', 'CYBR', 'FEYE', 'FIT', 'JD', 'GPRO']
+# symbList = ['GPRO']
 while True:
     for symb in symbList:
         print(symb)
@@ -81,22 +82,22 @@ while True:
         tweets2sq = []
         for d in reversed(tweets):
             # print(d.keys())
-            print('text --->',d['text'])
-            print('created_at --->',d['created_at'])
-            print('user/screen_name --->', d['user']['screen_name'])
-            print('user/friends_count',    d['user']['friends_count'])
-            print('user/followers_count',  d['user']['followers_count'])
-            print('user/id_str',           d['user']['id_str'])
-            print('user/favourites_count', d['user']['favourites_count'])
+            print(symb,d['created_at'],'text --->',d['text'].replace('\n', ' '))
+            # print('created_at --->',d['created_at'])
+            # print('user/screen_name --->', d['user']['screen_name'])
+            # print('user/friends_count',    d['user']['friends_count'])
+            # print('user/followers_count',  d['user']['followers_count'])
+            # print('user/id_str',           d['user']['id_str'])
+            # print('user/favourites_count', d['user']['favourites_count'])
             # for k in d.keys():
             #     if (k == 'text'):
             #         print(k, '--->' , d[k].replace('\n', ' '))
             tweets2sq.append((symb, d['created_at'], d['user']['screen_name'], int(d['user']['friends_count']), int(d['user']['followers_count']), int(d['user']['id_str']), int(d['user']['favourites_count']), d['text'].replace('\n', ' ')))
             print('\n')
 
-        print(encodedQuery)
-        print(tweets[0].keys())
-        pprint.pprint(tweets2sq)
+        # print(encodedQuery)
+        # print(tweets[0].keys())
+        # pprint.pprint(tweets2sq)
         # Test changes.
 
         # Project 1 will attempt to use yahoo-finance to retrieve stock data. These data will be stored alone with twitter data.
@@ -114,5 +115,6 @@ while True:
         c.executemany('INSERT OR IGNORE INTO tw VALUES (?,?,?,?,?,?,?,?)', tweets2sq)
         conn.commit()
         conn.close()
+    print('Loop End.')
     time.sleep(60)
 
