@@ -82,7 +82,7 @@ while True:
         tweets2sq = []
         for d in reversed(tweets):
             # print(d.keys())
-            print(symb,d['created_at'],'text --->',d['text'].replace('\n', ' '))
+            print(symb,d['created_at'],'text --->',d['text'].replace('\n', ' ').encode('utf-8'))
             # print('created_at --->',d['created_at'])
             # print('user/screen_name --->', d['user']['screen_name'])
             # print('user/friends_count',    d['user']['friends_count'])
@@ -92,7 +92,7 @@ while True:
             # for k in d.keys():
             #     if (k == 'text'):
             #         print(k, '--->' , d[k].replace('\n', ' '))
-            tweets2sq.append((symb, d['created_at'], d['user']['screen_name'], int(d['user']['friends_count']), int(d['user']['followers_count']), int(d['user']['id_str']), int(d['user']['favourites_count']), d['text'].replace('\n', ' ')))
+            tweets2sq.append((symb, d['created_at'], d['user']['screen_name'], int(d['user']['friends_count']), int(d['user']['followers_count']), int(d['user']['id_str']), int(d['user']['favourites_count']), d['text'].replace('\n', ' ').encode('utf-8')))
             print('\n')
 
         # print(encodedQuery)
