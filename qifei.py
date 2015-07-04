@@ -62,7 +62,7 @@ print('ok')
 # Here %23 == '#' %24 == '$' http://meyerweb.com/eric/tools/dencoder/ helps encode or decode rul.
 # encodedQuery = '%24CVEO'
 encodedQuery = '%24'+opts.sname[1]
-symbList = ['AMBA', 'CVEO', 'PANW', 'CYBR', 'FEYE', 'FIT', 'JD', 'GPRO']
+symbList = ['AMBA', 'CVEO', 'PANW', 'CYBR', 'FEYE', 'FIT', 'JD', 'GPRO', 'ACN']
 # symbList = ['GPRO']
 while True:
     for symb in symbList:
