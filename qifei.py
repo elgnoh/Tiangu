@@ -116,5 +116,5 @@ while True:
         conn.commit()
         conn.close()
     print('Loop End.')
-    time.sleep(60)
+    time.sleep(300)
 
